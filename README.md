@@ -1,171 +1,172 @@
-# Eclipse Cargo Tracker - Applied Domain-Driven Design Blueprints for Jakarta EE
+# Eclipse Cargo Tracker - Jakarta EE için Uygulamalı Domain-Driven Design Örnekleri
 
-The project demonstrates how you can develop applications with Jakarta EE using widely adopted architectural best 
-practices like Domain-Driven Design (DDD). The project is based on the well-known [Java DDD sample application](https://github.com/citerus/dddsample-core) 
-developed by DDD pioneer Eric Evans' company Domain Language and the Swedish software consulting company Citerus. 
-The cargo example actually comes from Eric Evans' seminal book on DDD.
+Bu proje, Domain-Driven Design (DDD) gibi yaygın olarak kabul görmüş mimari en iyi uygulamaları kullanarak Jakarta EE ile nasıl uygulama geliştirebileceğinizi göstermektedir. Proje, DDD öncüsü Eric Evans'ın şirketi Domain Language ve İsveç yazılım danışmanlık şirketi Citerus tarafından geliştirilen bilinen [Java DDD örnek uygulamasına](https://github.com/citerus/dddsample-core) dayanmaktadır. Kargo örneği aslında Eric Evans'ın DDD hakkındaki önemli kitabından gelmektedir.
 
-The application is an end-to-end system for keeping track of shipping cargo. It
-has several interfaces described in the following sections.
+Uygulama, kargo sevkiyatlarını takip etmek için uçtan uca bir sistemdir. Aşağıdaki bölümlerde açıklanan çeşitli arayüzlere sahiptir.
 
-For further details on the project, please visit: https://eclipse-ee4j.github.io/cargotracker/.
+Proje hakkında daha fazla bilgi için: https://eclipse-ee4j.github.io/cargotracker/
 
-A slide deck introducing the fundamentals of the project is available on the official Eclipse
-Foundation [Jakarta EE SlideShare account](https://www.slideshare.net/Jakarta_EE/applied-domaindriven-design-blueprints-for-jakarta-ee). A recording of the slide deck is available on the official [Jakarta EE YouTube account](https://www.youtube.com/watch?v=pKmmZd-3mhA).
+Projenin temellerini tanıtan bir slayt seti, resmi Eclipse Foundation [Jakarta EE SlideShare hesabında](https://www.slideshare.net/Jakarta_EE/applied-domaindriven-design-blueprints-for-jakarta-ee) mevcuttur. Slayt setinin bir kaydı, resmi [Jakarta EE YouTube hesabında](https://www.youtube.com/watch?v=pKmmZd-3mhA) bulunabilir.
 
-![Eclipse Cargo Tracker cover](cargo_tracker_cover.png)
+![Eclipse Cargo Tracker kapak](cargo_tracker_cover.png)
 
-## Getting Started
+## Başlarken
 
-The [project website](https://eclipse-ee4j.github.io/cargotracker/) has detailed information on how to get started.
+[Proje web sitesinde](https://eclipse-ee4j.github.io/cargotracker/) nasıl başlayacağınız hakkında detaylı bilgiler bulunmaktadır.
 
-The simplest steps are the following (no IDE required):
+En basit adımlar şunlardır (IDE gerekli değildir):
 
-* Get the project source code.
-* Ensure you are running Java SE 11 or Java SE 17.
-* Make sure JAVA_HOME is set.
-* Navigate to the project source root and type:
+* Proje kaynak kodunu edinin.
+* Java SE 11 veya Java SE 17 çalıştırdığınızdan emin olun.
+* JAVA_HOME'un ayarlandığından emin olun.
+* Proje kaynak kök dizinine gidin ve şu komutu yazın:
 ```
 ./mvnw clean package cargo:run
 ```
-* Go to http://localhost:8080/cargo-tracker
+* http://localhost:8080/cargo-tracker adresine gidin
 
-This will run the application with Payara Server by default. The project also has Maven profiles to support GlassFish 
-and Open Liberty. For example, you can run using GlassFish using the following command: 
+Bu, uygulamayı varsayılan olarak Payara Server ile çalıştıracaktır. Proje ayrıca GlassFish ve Open Liberty'yi destekleyen Maven profillerine sahiptir. Örneğin, aşağıdaki komutu kullanarak GlassFish ile çalıştırabilirsiniz:
 
 ```
 ./mvnw clean package -Pglassfish cargo:run
 ```
 
-Similarly, you can run using Open Liberty using the following command:
+Benzer şekilde, aşağıdaki komutu kullanarak Open Liberty ile çalıştırabilirsiniz:
 
 ```
 ./mvnw clean package -Popenliberty liberty:run
 ```
 
-To set up in Visual Studio Code, follow these steps:
+Visual Studio Code'da kurulum yapmak için şu adımları izleyin:
 
-* Set up Java SE 11, or Java SE 17, [Visual Studio Code](https://code.visualstudio.com/download) and [Payara 6](https://www.payara.fish/downloads/payara-platform-community-edition/). You will also need to set up the [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) and [Payara Tools](https://marketplace.visualstudio.com/items?itemName=Payara.payara-vscode) in Visual Studio Code.
-* Make sure JAVA_HOME is set.
-* Open the directory that contains the code in Visual Studio Code. Visual Studio Code will do the rest for you, it should automatically configure a Maven project. Proceed with clean/building the application.
-* After the project is built (which will take a while the very first time as Maven downloads dependencies), simply run the generated `cargo-tracker.war` file under the `target` directory using Payara Tools.
+* Java SE 11 veya Java SE 17, [Visual Studio Code](https://code.visualstudio.com/download) ve [Payara 6](https://www.payara.fish/downloads/payara-platform-community-edition/) kurun. Ayrıca Visual Studio Code'da [Extension Pack for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-pack) ve [Payara Tools](https://marketplace.visualstudio.com/items?itemName=Payara.payara-vscode) kurmanız gerekecektir.
+* JAVA_HOME'un ayarlandığından emin olun.
+* Kodu içeren dizini Visual Studio Code'da açın. Visual Studio Code geri kalanını sizin için halledecektir, otomatik olarak bir Maven projesi yapılandırmalıdır. Uygulamayı temizleme/derleme işlemine geçin.
+* Proje oluşturulduktan sonra (bu, Maven bağımlılıkları indirirken ilk kez biraz zaman alacaktır), `target` dizini altında oluşturulan `cargo-tracker.war` dosyasını Payara Tools kullanarak çalıştırın.
 
-You can similarly use GlassFish or Open Liberty in Visual Studio Code or Eclipse IDE for Enterprise and Web Developers.
+Benzer şekilde, Visual Studio Code veya Eclipse IDE for Enterprise and Web Developers'da GlassFish veya Open Liberty kullanabilirsiniz.
 
-## Exploring the Application
+## Uygulamayı Keşfetmek
 
-After the application runs, it will be available at:
-http://localhost:8080/cargo-tracker/. Under the hood, the application uses a
-number of Jakarta EE features including Faces, CDI, Enterprise Beans, Persistence, REST, Batch, JSON Binding, Bean Validation and Messaging.
+Uygulama çalıştıktan sonra, http://localhost:8080/cargo-tracker/ adresinde erişilebilir olacaktır. Uygulama, arka planda Faces, CDI, Enterprise Beans, Persistence, REST, Batch, JSON Binding, Bean Validation ve Messaging dahil olmak üzere birçok Jakarta EE özelliği kullanmaktadır.
 
-There are several web interfaces, REST interfaces and a file system scanning
-interface. It's probably best to start exploring the interfaces in the rough
-order below.
+Çeşitli web arayüzleri, REST arayüzleri ve dosya sistemi tarama arayüzü bulunmaktadır. Büyük olasılıkla arayüzleri aşağıdaki kabaca sırayla keşfetmeye başlamak en iyisidir.
 
-The tracking interface lets you track the status of cargo and is
-intended for the public. Try entering a tracking ID like ABC123 (the
-application is pre-populated with some sample data).
+İzleme arayüzü, kargo durumunu takip etmenize olanak tanır ve halka açık olması amaçlanmıştır. ABC123 gibi bir takip numarası girmeyi deneyin (uygulama bazı örnek verilerle önceden doldurulmuştur).
 
-The administrative interface is intended for the shipping company that manages
-cargo. The landing page of the interface is a dashboard providing an overall
-view of registered cargo. You can book cargo using the booking interface.
-Once cargo is booked, you can route it. When you initiate a routing request,
-the system will determine routes that might work for the cargo. Once you select
-a route, the cargo will be ready to process handling events at the port. You can
-also change the destination for cargo if needed or track cargo.
+Yönetim arayüzü, kargoyu yöneten nakliye şirketi için tasarlanmıştır. Arayüzün açılış sayfası, kayıtlı kargolara genel bir bakış sunan bir paneldir. Rezervasyon arayüzünü kullanarak kargo rezervasyonu yapabilirsiniz. Kargo rezervasyonu yapıldıktan sonra, onu yönlendirebilirsiniz. Bir rota talebi başlattığınızda, sistem kargo için çalışabilecek rotaları belirleyecektir. Bir rota seçtiğinizde, kargo limanda elleçleme olaylarını işlemeye hazır olacaktır. Gerekirse kargo için varış noktasını değiştirebilir veya kargoyu takip edebilirsiniz.
 
-The Handling Event Logging interface is intended for port personnel registering what
-happened to cargo. The interface is primarily intended for mobile devices, but
-you can use it via a desktop browser. The interface is accessible at this URL: 
-http://localhost:8080/cargo-tracker/event-logger/index.xhtml. For convenience, you
-could use a mobile emulator instead of an actual mobile device. Generally speaking cargo
-goes through these events:
+Elleçleme Olayı Günlüğü arayüzü, kargoya ne olduğunu kaydeden liman personeli için tasarlanmıştır. Arayüz öncelikle mobil cihazlar için tasarlanmıştır, ancak masaüstü tarayıcı üzerinden de kullanabilirsiniz. Arayüze şu URL'den erişilebilir: http://localhost:8080/cargo-tracker/event-logger/index.xhtml. Kolaylık için, gerçek bir mobil cihaz yerine bir mobil emülatör kullanabilirsiniz. Genel olarak kargo şu olaylardan geçer:
 
-* It's received at the origin location.
-* It's loaded and unloaded onto voyages on its itinerary.
-* It's claimed at its destination location.
-* It may go through customs at arbitrary points.
+* Menşe konumunda alınır.
+* Güzergahındaki seyahatlere yüklenir ve boşaltılır.
+* Varış yerinde teslim alınır.
+* Keyfi noktalarda gümrükten geçebilir.
 
-While filling out the event registration form, it's best to have the itinerary handy. You can access the itinerary for 
-registered cargo via the admin interface. The cargo handling is done via Messaging for scalability. While using the 
-event logger, note that only the load and unload events require as associated voyage.
+Olay kayıt formunu doldururken, güzergahı hazır bulundurmak en iyisidir. Kayıtlı kargolar için güzergaha yönetici arayüzü üzerinden erişebilirsiniz. Kargo elleçleme, ölçeklenebilirlik için Messaging aracılığıyla yapılır. Olay kaydedicisini kullanırken, yalnızca yükleme ve boşaltma olaylarının ilişkili bir seyahate ihtiyaç duyduğunu unutmayın.
 
-You should also explore the file system based bulk event registration interface.
-It reads files under /tmp/uploads. The files are just CSV files. A sample CSV
-file is available under [src/test/sample/handling_events.csv](src/test/sample/handling_events.csv). The sample is already set up to match the remaining 
-itinerary events for cargo ABC123. Just make sure to update the times in the first column of the sample CSV file to 
-match the itinerary as well.
+Ayrıca dosya sistemi tabanlı toplu olay kayıt arayüzünü de keşfetmelisiniz. /tmp/uploads altındaki dosyaları okur. Dosyalar sadece CSV dosyalarıdır. Örnek bir CSV dosyası [src/test/sample/handling_events.csv](src/test/sample/handling_events.csv) altında mevcuttur. Örnek, ABC123 kargosu için kalan güzergah olaylarına uyacak şekilde zaten ayarlanmıştır. Sadece örnek CSV dosyasının ilk sütunundaki zamanları güzergaha uyacak şekilde güncellediğinizden emin olun.
 
-Successfully processed entries are archived under /tmp/archive. Any failed records are
-archived under /tmp/failed.
+Başarıyla işlenen girdiler /tmp/archive altında arşivlenir. Başarısız kayıtlar /tmp/failed altında arşivlenir.
 
-Don't worry about making mistakes. The application is intended to be fairly
-error tolerant. If you do come across issues, you should [report them](https://github.com/eclipse-ee4j/cargotracker/issues).
+Hata yapmaktan endişelenmeyin. Uygulamanın oldukça hata toleranslı olması amaçlanmıştır. Sorunlarla karşılaşırsanız, [bildirmelisiniz](https://github.com/eclipse-ee4j/cargotracker/issues).
 
-You can simply remove ./cargo-tracker-data from the file system to restart fresh. This directory will typically be 
-under $your-payara-installation/glassfish/domains/domain1/config.
+Yeniden başlamak için dosya sisteminden ./cargo-tracker-data'yı kaldırabilirsiniz. Bu dizin tipik olarak $payara-kurulumunuz/glassfish/domains/domain1/config altında olacaktır.
 
-You can also use the soapUI scripts included in the source code to explore the
-REST interfaces as well as the numerous unit tests covering the code base
-generally. Some of the tests use Arquillian.
+Ayrıca kaynak koduna dahil edilen soapUI betiklerini kullanarak REST arayüzlerini ve kod tabanını genel olarak kapsayan çok sayıda birim testini de keşfedebilirsiniz. Bazı testler Arquillian kullanır.
 
-## Exploring the Code
+## Kodu Keşfetmek
 
-As mentioned earlier, the real point of the application is demonstrating how to
-create well architected, effective Jakarta EE applications. To that end, once you
-have gotten some familiarity with the application functionality the next thing
-to do is to dig right into the code.
+Daha önce de belirtildiği gibi, uygulamanın asıl amacı, iyi tasarlanmış, etkili Jakarta EE uygulamalarının nasıl oluşturulacağını göstermektir. Bu amaçla, uygulama işlevselliği hakkında biraz bilgi edindikten sonra yapılacak bir sonraki şey doğrudan kodun içine dalmaktır.
 
-DDD is a key aspect of the architecture, so it's important to get at least a
-working understanding of DDD. As the name implies, Domain-Driven Design is an
-approach to software design and development that focuses on the core domain and
-domain logic.
+DDD, mimarinin önemli bir yönüdür, bu nedenle en azından DDD hakkında çalışma anlayışı elde etmek önemlidir. İsmi de ima ettiği gibi, Domain-Driven Design, yazılım tasarımı ve geliştirmesine odaklanan bir yaklaşımdır.
 
-For the most part, it's fine if you are new to Jakarta EE. As long as you have a
-basic understanding of server-side applications, the code should be good enough to get started. For learning Jakarta EE 
-further, we have recommended a few links in the resources section of the project site. Of
-course, the ideal user of the project is someone who has a basic working
-understanding of both Jakarta EE and DDD. Though it's not our goal to become a kitchen
-sink example for demonstrating the vast amount of APIs and features in Jakarta EE,
-we do use a very representative set. You'll find that you'll learn a fair amount
-by simply digging into the code to see how things are implemented.
+Çoğunlukla, Jakarta EE'ye yeni olmanız sorun değil. Sunucu tarafı uygulamaları hakkında temel bir anlayışa sahip olduğunuz sürece, kod başlamak için yeterince iyi olmalıdır. Jakarta EE hakkında daha fazla bilgi edinmek için, projenin kaynak bölümünde birkaç bağlantı önerdik. Elbette, projenin ideal kullanıcısı, hem Jakarta EE hem de DDD hakkında temel bir çalışma anlayışına sahip olan kişidir. Jakarta EE'deki büyük miktarda API ve özelliği göstermek için bir mutfak lavabo örneği olmak amacımız olmasa da, çok temsili bir set kullanıyoruz. Şeylerin nasıl uygulandığını görmek için koda dalarak oldukça fazla şey öğreneceğinizi göreceksiniz.
 
-## Cloud Demo
-Cargo Tracker is deployed to Kubernetes on the cloud using GitHub Actions workflows. You can find the demo deployment on 
-the Scaleforce cloud (https://cargo-tracker.j.scaleforce.net). This project is very thankful to our sponsors [Jelastic](https://jelastic.com) 
-and [Scaleforce](https://www.scaleforce.net) for hosting the demo! The deployment and all the data is refreshed nightly. On the cloud Cargo Tracker 
-uses PostgreSQL as the database. The [GitHub Container Registry](https://ghcr.io/eclipse-ee4j/cargo-tracker) is used to publish Docker images.
+## Bulut Demo
+Cargo Tracker, GitHub Actions iş akışları kullanılarak bulutta Kubernetes'e dağıtılmaktadır. Demo dağıtımını Scaleforce bulutunda bulabilirsiniz (https://cargo-tracker.j.scaleforce.net). Bu proje, demoyu barındırdıkları için sponsorlarımız [Jelastic](https://jelastic.com) ve [Scaleforce](https://www.scaleforce.net)'a çok teşekkür eder! Dağıtım ve tüm veriler her gece yenilenir. Bulutta Cargo Tracker, veritabanı olarak PostgreSQL kullanır. Docker görüntülerini yayınlamak için [GitHub Container Registry](https://ghcr.io/eclipse-ee4j/cargo-tracker) kullanılır.
 
 ## Jakarta EE 8
-A Jakarta EE 8, Java SE 8, Payara 5 version of Cargo Tracker is available under the ['jakartaee8' branch](https://github.com/eclipse-ee4j/cargotracker/tree/jakartaee8).
+Cargo Tracker'ın Jakarta EE 8, Java SE 8, Payara 5 versiyonu ['jakartaee8' dalında](https://github.com/eclipse-ee4j/cargotracker/tree/jakartaee8) mevcuttur.
 
 ## Java EE 7
-A Java EE 7, Java SE 8, Payara 4.1 version of Cargo Tracker is available under the ['javaee7' branch](https://github.com/eclipse-ee4j/cargotracker/tree/javaee7).
+Cargo Tracker'ın Java EE 7, Java SE 8, Payara 4.1 versiyonu ['javaee7' dalında](https://github.com/eclipse-ee4j/cargotracker/tree/javaee7) mevcuttur.
 
-## Contributing
-This project complies with the Google Style Guides for [Java](https://google.github.io/styleguide/javaguide.html), [JavaScript](https://google.github.io/styleguide/jsguide.html), and [HTML/CSS](https://google.github.io/styleguide/htmlcssguide.html). 
-You can use the [google-java-format](https://github.com/google/google-java-format) tool to help you comply with the Google Java Style Guide. You can use the 
-tool with most major IDEs such as Eclipse, Visual Studio Code, and IntelliJ.
+## Katkıda Bulunma
+Bu proje, [Java](https://google.github.io/styleguide/javaguide.html), [JavaScript](https://google.github.io/styleguide/jsguide.html) ve [HTML/CSS](https://google.github.io/styleguide/htmlcssguide.html) için Google Stil Kılavuzlarına uymaktadır. Google Java Stil Kılavuzuna uymanıza yardımcı olmak için [google-java-format](https://github.com/google/google-java-format) aracını kullanabilirsiniz. Bu aracı Eclipse, Visual Studio Code ve IntelliJ gibi çoğu büyük IDE ile kullanabilirsiniz.
 
-In general for all files we use a column/line width of 80 whenever possible, and we use 2 spaces for indentation. 
-All files must end with a new line. Please adjust the formatting settings of your IDE accordingly. You are encouraged 
-but not required to use HTML Tidy and CSS Tidy to help format your code.
+Genel olarak tüm dosyalar için mümkün olduğunca 80 sütun/satır genişliği kullanırız ve girinti için 2 boşluk kullanırız. Tüm dosyalar yeni bir satırla bitmelidir. Lütfen IDE'nizin biçimlendirme ayarlarını buna göre ayarlayın. Kodunuzu biçimlendirmeye yardımcı olmak için HTML Tidy ve CSS Tidy kullanmanız teşvik edilir ancak gerekli değildir.
 
-For further guidance on contributing including the project roadmap, please look [here](CONTRIBUTING.md).
+Proje yol haritası da dahil olmak üzere katkıda bulunma hakkında daha fazla rehberlik için [buraya](CONTRIBUTING.md) bakın.
 
-## Known Issues
-* When using Visual Studio Code, please make sure that the JAVA_HOME environment variable is correctly set up. If it is not configured properly, you will be unable to select a domain when adding a Payara Server instance in Visual Studio Code.
-* When using Visual Studio Code, please make sure that Payara is not installed in a path with a space (for example: C:\Program Files\payara6). Payara will fail to start with the Payara Tools extension. Install Payara on a path without spaces (for example: C:\payara6).
-* You may get a log message stating that Payara SSL certificates have expired. This won't get in the way of functionality, but it will
-  stop log messages from being printed to the IDE console. You can solve this issue by manually removing the expired certificates from the Payara domain, as
-  explained [here](https://github.com/payara/Payara/issues/3038).
-* If you restart the application a few times, you will run into a bug causing a spurious deployment failure. While the problem can be annoying, it's harmless. Just re-run the application (make sure to completely un-deploy the application and shut down Payara first).
-* Sometimes when the server is not shut down correctly or there is a locking/permissions issue, the H2 database that
-  the application uses gets corrupted, resulting in strange database errors. If
-  this occurs, you will need to stop the application and clean the database. You
-  can do this by simply removing the cargo-tracker-data directory from the file
-  system and restarting the application. This directory will typically be under $your-payara-installation/glassfish/domains/domain1/config.
-* While using GlassFish, if tests fail with a `CIRCULAR REFERENCE` error, it means GlassFish start up timed out. The default timeout is 60 seconds. This may not be
-  enough on some systems, especially if virus scanners like Windows Defender are delaying GlassFish start up. You can increase GlassFish start up timeout
-  by setting the `AS_START_TIMEOUT` environment variable. For example, you can set it to 180000 for a 3 minute timeout.
-* While running with Open Liberty, you will notice a number of spurious errors. You will see shrinkwrap features warnings, message-driven bean warnings, the AggregateObjectMapping nested foreign key warning, I/O errors, etc. You can safely ignore these. They don't affect the application functionality.
+## Bilinen Sorunlar
+* Visual Studio Code kullanırken, JAVA_HOME ortam değişkeninin doğru şekilde ayarlandığından emin olun. Düzgün yapılandırılmamışsa, Visual Studio Code'da bir Payara Server örneği eklerken bir alan seçemezsiniz.
+* Visual Studio Code kullanırken, Payara'nın boşluk içeren bir yola kurulmadığından emin olun (örneğin: C:\Program Files\payara6). Payara, Payara Tools uzantısıyla başlatılamayacaktır. Payara'yı boşluk içermeyen bir yola kurun (örneğin: C:\payara6).
+* Payara SSL sertifikalarının süresi dolduğunu belirten bir günlük mesajı alabilirsiniz. Bu işlevselliğin önüne geçmez, ancak günlük mesajlarının IDE konsoluna yazdırılmasını durdurur. Bu sorunu, [burada](https://github.com/payara/Payara/issues/3038) açıklandığı gibi süresi dolmuş sertifikaları Payara alanından manuel olarak kaldırarak çözebilirsiniz.
+* Uygulamayı birkaç kez yeniden başlatırsanız, sahte bir dağıtım hatasına neden olan bir hataya rastlayacaksınız. Sorun sinir bozucu olabilse de, zararsızdır. Sadece uygulamayı yeniden çalıştırın (uygulamayı tamamen kaldırdığınızdan ve Payara'yı ilk önce kapattığınızdan emin olun).
+* Bazen sunucu düzgün kapatılmadığında veya bir kilitleme/izin sorunu olduğunda, uygulamanın kullandığı H2 veritabanı bozulabilir, bu da garip veritabanı hatalarına neden olur. Bu durumda, uygulamayı durdurup veritabanını temizlemeniz gerekecektir. Bunu, cargo-tracker-data dizinini dosya sisteminden kaldırarak ve uygulamayı yeniden başlatarak yapabilirsiniz. Bu dizin genellikle $payara-kurulumunuz/glassfish/domains/domain1/config altında olacaktır.
+* GlassFish kullanırken, testler `CIRCULAR REFERENCE` hatasıyla başarısız olursa, GlassFish başlatma süresinin zaman aşımına uğradığı anlamına gelir. Varsayılan zaman aşımı 60 saniyedir. Bu, özellikle Windows Defender gibi virüs tarayıcıları GlassFish başlatmayı geciktiriyorsa, bazı sistemlerde yeterli olmayabilir. `AS_START_TIMEOUT` ortam değişkenini ayarlayarak GlassFish başlatma zaman aşımını artırabilirsiniz. Örneğin, 3 dakikalık bir zaman aşımı için 180000 olarak ayarlayabilirsiniz.
+* Open Liberty ile çalışırken, çok sayıda sahte hata fark edeceksiniz. Shrinkwrap özellikleri uyarıları, mesaj odaklı bean uyarıları, AggregateObjectMapping iç içe geçmiş yabancı anahtar uyarısı, G/Ç hataları vb. göreceksiniz. Bunları güvenle göz ardı edebilirsiniz. Uygulama işlevselliğini etkilemezler.
+
+## Proje Yapısı
+
+Proje, Domain-Driven Design (DDD) prensiplerine göre düzenlenmiştir:
+
+```
+src/main/java/org/eclipse/cargotracker/
+├── application/     # Uygulama katmanı - uygulama servisleri
+├── domain/          # Domain katmanı - temel iş mantığı
+├── infrastructure/  # Altyapı katmanı - teknik detaylar
+└── interfaces/      # Arabirimler - UI, REST API, dış servisler
+```
+
+### Proje İçeriği
+- **application/** - Uygulama servisleri, domain modeli ile UI arasındaki bağlantıyı sağlar
+- **domain/** - DDD'nin kalbi, temel iş kuralları ve varlıklar burada bulunur
+- **infrastructure/** - Teknik detaylar ve dış sistemlerle entegrasyon
+- **interfaces/** - Kullanıcı arayüzleri ve dış dünya ile iletişim
+
+Bu yapı, Eric Evans'ın Domain-Driven Design kitabındaki katmanlı mimari prensibini yansıtmaktadır. Uygulama, işlevsel olmayan gereksinimlerden (kullanıcı arayüzü, veritabanı, dış sistemler) bağımsız olarak temel iş mantığını izole etmeyi amaçlar.
+
+## Detaylı Proje Yapısı
+
+Projenin Domain-Driven Design prensiplerine göre düzenlenmiş daha detaylı yapısı aşağıdaki gibidir:
+
+```
+src/main/java/org/eclipse/cargotracker/
+├── application/              # Uygulama Katmanı
+│   ├── BookingService.java   # Kargo rezervasyon servisi
+│   ├── CargoInspectionService.java # Kargo denetim servisi
+│   ├── HandlingEventService.java   # Elleçleme olayları servisi
+│   ├── ApplicationEvents.java      # Uygulama olayları
+│   ├── internal/             # İç uygulama servisleri
+│   └── util/                 # Yardımcı sınıflar
+│
+├── domain/                   # Domain Katmanı (Temel İş Mantığı)
+│   ├── model/                # Domain modelleri ve varlıklar
+│   ├── service/              # Domain servisleri
+│   └── shared/               # Paylaşılan domain bileşenleri
+│
+├── infrastructure/           # Altyapı Katmanı
+│   ├── events/               # Olay yönetimi altyapısı
+│   ├── logging/              # Günlük kaydı altyapısı
+│   ├── messaging/            # Mesajlaşma altyapısı
+│   ├── persistence/          # Veritabanı işlemleri
+│   └── routing/              # Rota yönetimi altyapısı
+│
+└── interfaces/               # Arayüzler Katmanı
+    ├── booking/              # Rezervasyon arayüzleri
+    ├── handling/             # Elleçleme arayüzleri
+    ├── tracking/             # İzleme arayüzleri
+    ├── Coordinates.java      # Koordinat arayüzü
+    └── CoordinatesFactory.java # Koordinat fabrikası
+```
+
+Bu yapı, Eric Evans'ın Domain-Driven Design kitabındaki katmanlı mimari prensibini yansıtmaktadır:
+
+1. **Domain Katmanı**: Uygulamanın çekirdeğidir, iş modellerini ve iş kurallarını içerir.
+2. **Uygulama Katmanı**: Domain katmanı ile kullanıcı arayüzü arasında aracılık eden, iş kullanım senaryolarını koordine eden katmandır.
+3. **Altyapı Katmanı**: Veritabanı, mesajlaşma, loglama gibi teknik detayları sağlar.
+4. **Arayüzler Katmanı**: Kullanıcılar ve dış sistemler ile etkileşimi sağlayan katmandır (UI, REST API, olay işleme vb.).
+
+Bu katmanlı mimari, uygulamanın temel iş mantığını (domain) teknolojik ve sunum ayrıntılarından izole ederek, bakımı daha kolay, test edilebilir ve değişime daha açık bir yapı oluşturur.
